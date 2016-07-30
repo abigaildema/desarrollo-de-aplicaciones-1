@@ -1,0 +1,253 @@
+package recibonomina;
+import java.awt.*;
+import javax.swing.*;
+import javax.swing.event.*;
+import java.awt.event.*;
+import java.awt.color.*;
+import javax.swing.border.Border;
+        public class Recibonomina extends JFrame{
+    final JPanel panel;
+    private JTextField i_nombre;
+    private JTextField i_RFC;
+    private JTextField i_no_empleado;
+    private JComboBox i_puesto;
+    private String puestoss[]={"gerente","supervisor","jefe de departamento","auxiliar"};
+    private JTextField i_salario;
+    private JTextField i_bonos;
+    private JTextField i_tpercepciones;
+    private JTextField i_impuestos;
+    private JTextField i_otrosd;
+    private JTextField i_tdeducciones;
+    private JTextField i_salariot;
+    /**/
+    private JLabel no_empleado;
+    private JLabel nombre;
+    private JLabel RFC;
+    private JLabel puesto;
+    private JLabel salario;
+    private JLabel bonos;
+    private JLabel tpercepciones;
+    private JLabel impuestos;
+    private JLabel otrosd;
+    private JLabel tdeducciones;
+    private JLabel salariot;
+        private JLabel percepciones;
+        private JLabel deducciones;
+        
+        private JButton calcular;
+        private JButton imprimir;
+       private JButton salir;
+        
+        /////////////////////////////
+        public double dsalario;
+        public double dbonos;
+        
+    public Recibonomina (){
+    panel=new JPanel (new FlowLayout() );
+      no_empleado = new JLabel ("nombre de empleado");
+      i_no_empleado = new JTextField ("",12);
+      nombre = new JLabel ("NOMBRE");
+      i_nombre = new JTextField ("",12);
+      RFC = new JLabel ("RFC");
+     i_RFC = new JTextField ("",12);
+     puesto = new JLabel ("PUESTO");
+     i_puesto = new JComboBox   (puestoss );
+     i_puesto.setMaximumRowCount(3);
+     percepciones = new JLabel ("PERCEPCIONES");
+     salario = new JLabel ("SALARIO");
+     i_salario = new JTextField ("0",12);
+     bonos = new JLabel ("BONOS/VALES");
+     i_bonos = new JTextField ("",12);
+     tpercepciones = new JLabel ("Total percepciones");
+     i_tpercepciones = new JTextField ("",12);
+     deducciones = new JLabel ("DEDUCCIONES");
+     impuestos = new JLabel ("Impuestos");
+     i_impuestos = new JTextField ("",12);
+     otrosd = new JLabel ("Otros descuentos");
+     i_otrosd = new JTextField ("",12);
+     tdeducciones = new JLabel ("TOTAL DEDUCCIONES");
+     i_tdeducciones = new JTextField ("",12);
+     salariot = new JLabel ("SALARIO TOTAL");
+     i_salariot = new JTextField ("",12);
+     
+     calcular =new JButton("CALCULAR");
+       imprimir =new JButton("imprimir");
+       salir =new JButton("salir");
+      
+      
+      panel.add(no_empleado);
+     panel.add(i_no_empleado);
+     panel.add(nombre);
+     panel.add(i_nombre);
+     panel.add(RFC);
+     panel.add(i_RFC);
+      panel.add(i_RFC);
+      panel.add(puesto);
+      panel.add(i_puesto);
+      panel.add(percepciones);
+      panel.add(salario);
+      panel.add(i_salario);
+      panel.add(bonos);
+      panel.add(i_bonos);
+      panel.add(tpercepciones);
+      panel.add(i_tpercepciones);
+      panel.add(deducciones);
+      panel.add(impuestos);
+      panel.add(i_impuestos);
+      panel.add(otrosd);
+      panel.add(i_otrosd);
+      panel.add(tdeducciones);
+      panel.add(i_tdeducciones);
+      panel.add(salariot);
+      panel.add(i_salariot);
+      
+      panel.add(calcular);
+      panel.add(imprimir);
+      panel.add(salir);
+      
+      i_salariot.setEditable(false); 
+      i_tdeducciones.setEditable(false); 
+      i_tpercepciones.setEditable(false); 
+
+      ////////////////////////////////////////////////////
+      i_no_empleado.setBackground(new Color (69,113,215));
+      i_no_empleado.setForeground(Color.white);
+      no_empleado.setForeground(new Color (69,113,215));
+      
+      nombre.setForeground(new Color(143,6,185));
+      i_nombre.setBackground(new Color (143,6,185));
+      i_nombre.setForeground(Color.white);
+      
+      RFC.setForeground(new Color(8,163,14));
+      i_RFC.setBackground(new Color (8,163,14));
+      i_RFC.setForeground(Color.white);
+      
+      puesto.setForeground(new Color(239,124,24));
+      i_puesto.setBackground(new Color (239,124,24));
+      i_puesto.setForeground(Color.black);
+      
+      salario.setForeground(new Color (238,53,157));
+      i_salario.setBackground(new Color (238,53,157));
+      i_salario.setForeground(Color.white);
+      
+      salario.setForeground(new Color (238,53,157));
+      i_salario.setBackground(new Color (238,53,157));
+      i_salario.setForeground(Color.white);
+      
+      bonos.setForeground(new Color (209,6,6));
+      i_bonos.setBackground(new Color (209,6,6));
+      i_bonos.setForeground(Color.white);
+     
+      tpercepciones.setForeground(new Color (130,67,162));
+      i_tpercepciones.setBackground(new Color (130,67,162));
+      i_tpercepciones.setForeground(Color.white);
+      
+      impuestos.setForeground(new Color (107,158,246));
+      i_impuestos.setBackground(new Color (139,176,239));
+      i_impuestos.setForeground(Color.black);
+      
+      tpercepciones.setForeground(new Color (130,51,142));
+      i_tpercepciones.setBackground(new Color (130,51,142));
+      i_tpercepciones.setForeground(Color.white);
+      
+      otrosd.setForeground(new Color (100,100,100));
+      i_otrosd.setBackground(new Color (100,100,100));
+      i_otrosd.setForeground(Color.white);
+      
+      tdeducciones.setForeground(new Color (119,32,90));
+      i_tdeducciones.setBackground(new Color (119,32,90));
+      i_tdeducciones.setForeground(Color.white);
+      
+      salariot.setForeground(new Color (239,164,131));
+      i_salariot.setBackground(new Color (239,164,131));
+      i_salariot.setForeground(Color.black);
+      
+      calcular.setForeground(Color.black);
+      calcular.setBackground(new Color (18,237,245));
+      
+      imprimir.setForeground(Color.black);
+      imprimir.setBackground(new Color (247,255,0));
+      
+      salir.setBackground(new Color (65,2,107));
+      salir.setForeground(Color.white);
+      
+      
+      
+      ///////////////////////////////////////////////////////
+      
+      this.add(panel);
+      this.setSize(170,630);
+      this.setLocation(600,100);
+      this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      this.setVisible(true);
+      
+    ManejoDeEventos Listener=new ManejoDeEventos();
+     calcular.addActionListener(Listener);
+    imprimir.addActionListener(Listener);
+    salir.addActionListener(Listener);
+
+    
+    }
+    
+    private class ManejoDeEventos implements ActionListener{
+    @Override
+    public void actionPerformed(ActionEvent evento){
+     
+   
+    dsalario=Double.parseDouble(i_salario.getText());
+    dbonos=Double.parseDouble(i_bonos.getText());
+    
+
+    
+    
+    double dtpercepciones=0;
+    double dimpuestos=0;
+    double dotrosd=0;
+    double dtdeducciones=0;
+    double dstotal=0;
+    double dnomina=0;
+    dimpuestos=Double.parseDouble(i_impuestos.getText());
+    dotrosd=Double.parseDouble(i_otrosd.getText());
+    
+    dtpercepciones=dsalario+dbonos;
+    dtdeducciones=dimpuestos+dotrosd;
+    dstotal=(dtpercepciones-dtdeducciones);
+    dnomina=dstotal;
+    
+    
+if(evento.getSource()==calcular){
+    
+    
+    
+    i_tpercepciones.setText(String.valueOf(dtpercepciones));
+    i_tdeducciones.setText(String.valueOf(dtdeducciones));
+    i_salariot.setText(String.valueOf(dstotal));
+    
+    }
+    
+dnomina=dstotal;
+    
+    if(evento.getSource()==(JButton)imprimir){
+    JOptionPane imprimir=new JOptionPane();
+    imprimir.showMessageDialog(null,"la nomina del mes es:"+dnomina);
+    }
+        
+    
+    if(evento.getSource()==(JButton)salir){
+       System.exit(0);
+    }
+    
+    
+    }
+    
+    }
+    
+    
+    
+    
+    public static void main (String args[]){
+Recibonomina ap=new Recibonomina();
+
+}
+    
+    }
