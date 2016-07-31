@@ -1,0 +1,141 @@
+package factura;
+import java.awt.*;
+import javax.swing.*;
+import javax.swing.event.*;
+import java.awt.event.*;
+import java.awt.color.*;
+import javax.swing.border.Border;
+        public class Factura extends JFrame{
+    final JPanel panel;
+    private JTextField i_no_factura;
+    private JTextField i_cliente;
+    private JTextField i_pago;
+    private JTextField i_cantidad;
+    private JTextField i_producto;
+    
+    private JTextField i_total;
+    /**/
+    private JLabel no_factura;
+    private JLabel cliente;
+    private JLabel pago;
+    private JLabel cantidad;
+    private JLabel producto;
+    
+        private JLabel total;
+        
+        private JButton calcular;
+        private JButton imprimir;
+       private JButton salir;
+        
+        /////////////////////////////
+        
+    public Factura (){
+    panel=new JPanel (new FlowLayout() );
+      no_factura = new JLabel ("FACTURA NO:");
+      i_no_factura = new JTextField ("",12);
+      cliente = new JLabel ("NOMBRE CLIENTE");
+      i_cliente = new JTextField ("",12);
+      pago = new JLabel ("PAGO");
+     i_pago = new JTextField ("",12);
+     cantidad = new JLabel ("CANTIDAD");
+     i_cantidad = new JTextField ("0",12);
+     producto = new JLabel ("Nombre Producto");
+     i_producto = new JTextField ("",12);
+     total = new JLabel ("Total");
+     i_total = new JTextField ("",12);
+     
+     
+     calcular =new JButton("CALCULAR");
+       imprimir =new JButton("imprimir");
+       salir =new JButton("salir");
+      
+      
+      panel.add(no_factura);
+     panel.add(i_no_factura);
+     panel.add(cliente);
+     panel.add(i_cliente);
+     panel.add(pago);
+     panel.add(i_pago);
+      panel.add(cantidad);
+      panel.add(i_cantidad);
+      panel.add(producto);
+      panel.add(i_producto);
+      panel.add(total);
+      panel.add(i_total);
+      
+      panel.add(calcular);
+      panel.add(imprimir);
+      panel.add(salir);
+      
+      i_total.setEditable(false); 
+      
+      ////////////////////////////////////////////////////
+      
+      calcular.setForeground(Color.black);
+      calcular.setBackground(new Color (18,237,245));
+      
+      imprimir.setForeground(Color.black);
+      imprimir.setBackground(new Color (247,255,0));
+      
+      salir.setBackground(new Color (65,2,107));
+      salir.setForeground(Color.white);
+      
+      
+      
+      ///////////////////////////////////////////////////////
+      
+      this.add(panel);
+      this.setSize(170,630);
+      this.setLocation(600,100);
+      this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      this.setVisible(true);
+      
+    ManejoDeEventos Listener=new ManejoDeEventos();
+     calcular.addActionListener(Listener);
+    imprimir.addActionListener(Listener);
+    salir.addActionListener(Listener);
+
+    
+    }
+    
+    private class ManejoDeEventos implements ActionListener{
+    @Override
+    public void actionPerformed(ActionEvent evento){
+     
+   double e_cantidad=0;
+   double e_total=0;
+    e_cantidad=Double.parseDouble(i_cantidad.getText());
+    e_total=e_cantidad*200;
+
+    
+    
+if(evento.getSource()==calcular){
+    
+    i_total.setText(String.valueOf(e_total));
+    
+    }
+    
+    if(evento.getSource()==(JButton)imprimir){
+    JOptionPane imprimir=new JOptionPane();
+    imprimir.showMessageDialog(null,"el total es:"+e_total);
+    }
+        
+    
+    if(evento.getSource()==(JButton)salir){
+       System.exit(0);
+    }
+    
+    
+    }
+    
+    }
+    
+    
+    
+    
+    public static void main (String args[]){
+Factura ap=new Factura();
+
+}
+    
+    }
